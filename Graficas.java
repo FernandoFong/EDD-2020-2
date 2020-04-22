@@ -37,8 +37,10 @@ public class Graficas {
 
     public void eliminarVertice(int v) {
         Vertice elimina = buscaVertice(v);
-        for(Vertice ve : elimina.vecinos)
-            this.eliminarArista(elimina.elemento, ve.elemento);
+        while(!elimina.vecinos.isEmpty()) {
+            Vertice vecino = elimina.vecinos.getFirst();
+            this.eliminarArista(v, vecino.elemento);
+        }
         this.vertices.remove(elimina);
     }
 

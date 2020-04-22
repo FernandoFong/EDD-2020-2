@@ -17,5 +17,11 @@ public class Main {
         g.agregarArista(10, 1);
         System.out.println(g.toString());
 
+        for(int i = 1; i <= 10; i++) {
+            System.out.printf("Eliminando: %d\n", i);
+            g.eliminarVertice(i);
+            System.out.println(g.toString());
+            System.out.println();
+        }
     }
 }
