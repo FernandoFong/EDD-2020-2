@@ -98,14 +98,16 @@ public class Graficas {
         if(s == null)
             return;
         Queue<Vertice> cola = new LinkedList<>();
+        s.marcado = true;
         cola.add(s);
         while(!cola.isEmpty()) {
             Vertice i = cola.poll();
-            i.marcado = true;
             System.out.println(i.elemento);
             for(Vertice ve : i.vecinos) {
-                if(!ve.marcado)
+                if(!ve.marcado) {
+                    ve.marcado = true;
                     cola.add(ve);
+                }
             }
         }
     }
