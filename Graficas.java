@@ -1,4 +1,5 @@
 import java.util.LinkedList; //Para tener una lista de vértices.
+import java.util.Queue;
 
 public class Graficas {
 
@@ -7,11 +8,13 @@ public class Graficas {
         //Para no tener que hacer getters y setters, pues que todo sea public.
         public int elemento;
         public LinkedList<Vertice> vecinos;
+        public boolean marcado;
 
         //¿Qué recibiría el constructor?
         public Vertice(int e) {
             this.elemento = e;
             this.vecinos = new LinkedList<>(); //Especifico que no tengo vecinos aún.
+            this.marcado = false;
         }
 
         public String toString() {
@@ -76,6 +79,35 @@ public class Graficas {
                 s += "\n";
         }
         return s;
+    }
+
+    public void bfs(int source) {
+        /**
+         * Encuentro el vértice asociado a source.
+         * Lo marco como visitado.
+         * Para todos sus vecinos que no estén visitados:
+         *     Los meto a la cola. Cola es una interfaz, hay que usar una clase que
+                                   implemente a esa interfaz, como lo es LinkedList.
+         * Mientras que la cola no sea vacía:
+         *     saco un vértice de la cola.
+         *     lo marco como visitado.
+         *     y meto a todos sus vecinos que no estén marcados ya.
+         */
+        // Checar el algoritmo húngaro para gráficas bipartitas.
+        Vertice s = buscaVertice(source);
+        if(s == null)
+            return;
+        Queue<Vertice> cola = new LinkedList<>();
+        cola.add(s);
+        while(!cola.isEmpty()) {
+            Vertice i = cola.poll();
+            i.marcado = true;
+            System.out.println(i.elemento);
+            for(Vertice ve : i.vecinos) {
+                if(!ve.marcado)
+                    cola.add(ve);
+            }
+        }
     }
 
 }
