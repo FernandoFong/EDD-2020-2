@@ -16,7 +16,7 @@ public class MinHeap {
     }
 
     private void heapify(int i) {
-	if(i > this.heap.length/2)
+	if(left(i) == -1)
 	    return;
 	int l = left(i);
 	int r = right(i);
