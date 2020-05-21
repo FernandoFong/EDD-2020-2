@@ -4,8 +4,14 @@ public class MinHeap {
 
     private int [] heap;
     private int size;
-    private int lastAdded;
+    private int maxSize;
 
+    public MinHeap(int maxSize) {
+	this.heap = new int[maxSize];
+	heap[0] = Integer.MAX_VALUE;
+	this.size = 0;
+    }
+    
     public MinHeap(int [] h, int s) {
 	this.heap = new int[s];
 	// Construyo el heap al chilazo.
@@ -16,6 +22,7 @@ public class MinHeap {
 	this.size = s;
 	for(int i = s/2; i >= 0; i--)
 	    heapify(i); //Mando llamar a Heapify desde la mitad.
+	this.maxSize = this.heap.length;
     }
 
     private void heapify(int i) {
@@ -79,10 +86,6 @@ public class MinHeap {
 	heap[0] = Integer.MAX_VALUE;
 	heapify(0);
 	return m;
-    }
-
-    public void agrega(int x) {
-	
     }
 
     public String toString() {
